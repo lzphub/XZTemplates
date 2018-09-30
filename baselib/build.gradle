@@ -1,0 +1,110 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+
+android {
+    compileSdkVersion 28
+    lintOptions {
+        abortOnError false
+    }
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //路由
+        javaCompileOptions.annotationProcessorOptions {
+            arguments = [moduleName: project.getName()]
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets.main {
+        jniLibs.srcDirs = ['libs']
+        java.srcDirs += 'src/support/java'
+        res.srcDirs += 'src/support/res'
+        res.srcDirs += 'src/support/order_res'
+        res.srcDirs += 'src/support/personal_res'
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    testImplementation deps.test.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.core
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api deps.support.app_compat
+    api deps.support.design
+    api deps.support.cardview
+    api deps.support.constraint_layout
+
+    api deps.rxjava2
+    api deps.rxAndroid
+    api deps.rxjavaAdapter
+    api deps.and_permission
+    api deps.rxpermissions
+
+    api deps.glide.runtime
+    api deps.glide.okhttp3
+
+    api deps.widgets.photoview
+    api deps.butterknife.butterknife
+
+    api deps.alibaba.arouter_api
+    api deps.alibaba.fastjson
+    api deps.alibaba.converter_fastjson
+
+    api deps.retrofit.runtime
+    api deps.facebook.stetho
+    api deps.facebook.stetho_okhttp3
+    annotationProcessor deps.glide.compiler
+    annotationProcessor deps.butterknife.butterknife_compiler
+    annotationProcessor project(':component-compiler')
+    annotationProcessor deps.alibaba.arouter_compiler
+
+    kapt deps.glide.compiler
+    kapt deps.butterknife.butterknife_compiler
+    kapt project(':component-compiler')
+    kapt deps.alibaba.arouter_compiler
+
+    //mta 3.4.7 稳定版
+    //mid jar包 必须添加
+    api deps.tencent.mta
+    api deps.tencent.mid
+
+//    api project(':component-zxing')
+    api project(':component-annotations')
+//    api project(':component-easeui')
+
+    implementation 'org.aspectj:aspectjrt:1.8.9'
+    implementation files('libs/happy-dns-0.2.13.jar')
+    implementation files('libs/qiniu-android-sdk-7.3.12.jar')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation deps.kotlin.anko
+    kapt deps.alibaba.arouter_compiler
+
+}

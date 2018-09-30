@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':baselib',  ':component-annotations', ':module-store',':module_address', ':module-setting', ':module-user',
+        ':component-compiler'

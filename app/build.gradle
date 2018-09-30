@@ -1,28 +1,78 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 android {
-    compileSdkVersion 27
+
+    compileSdkVersion build_versions.compile_sdk
+
     defaultConfig {
-        applicationId "cn.dankal.templates"
-        minSdkVersion 16
-        targetSdkVersion 27
+//        multiDexEnabled true
+
+        applicationId "cn.dankal.dankalktsample"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        versionName "1.0.0"
+
+        //路由
+        javaCompileOptions.annotationProcessorOptions {
+            arguments = [moduleName: project.getName()]
         }
+        manifestPlaceholders = [
+                //MTA
+                MTA_APPKEY   : "xx",
+                MTA_CHANNEL  : "xx",
+
+                //极光推送
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "xx", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "xx-default", //暂时填写默认值即可.
+        ]
+
+    }
+
+    signingConfigs {
+        Properties properties = new Properties()
+        if (rootProject.file("local.properties").exists()) {
+            properties.load(rootProject.file("local.properties").newDataInputStream())
+        }
+
+        jenkins {
+            storeFile file(System.getProperty('StoreFilePath') ?: properties.get("STOREFILE"))
+            storePassword System.getProperty('StorePassword') ?: properties.get("STOREPASSWORD")
+            keyAlias System.getProperty('KeyAlias') ?: properties.get("KEYALIAS")
+            keyPassword System.getProperty('KeyPassword') ?: properties.get("KEYPASSWORD")
+        }
+
+    }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled true
+//            minifyEnabled true
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.jenkins
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+//    api deps.support.multidex
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    annotationProcessor deps.glide.compiler
+    annotationProcessor deps.butterknife.butterknife_compiler
+    annotationProcessor deps.alibaba.arouter_compiler
+    api project(':module-user')
+    api project(':baselib')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="config_color_blue" format="color"/>
+    <color name="config_color_gray_5">#858C96</color>
+
+    <color name="colorE5">#e5e5e5</color>
+    <color name="colorE550">#50e5e5e5</color>
+
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="colorF5">#F5F5F5</color>
+    <color name="colorEF">#EFEFEF</color>
+    <color name="colorFF">#FFFFFF</color>
+    <color name="colorDE">#DEDEDE</color>
+    <color name="colorCF">#CFCFCF</color>
+    <color name="colorC1">#C1C1C1</color>
+    <color name="color9B">#9B9B9B</color>
+    <color name="color4A">#4a4a4a</color>
+
+    <color name="color99">#999999</color>
+    <color name="color66">#666666</color>
+    <color name="color33">#333333</color>
+    <color name="color14">#141414</color>
+    <color name="color00">#000000</color>
+
+</resources>

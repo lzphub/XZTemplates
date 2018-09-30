@@ -1,0 +1,10 @@
+apply from: '../module.gradle'
+android {
+
+    defaultConfig {
+        if (!assembleApp.toBoolean()) {
+            applicationId 'cn.dankal.user'
+        }
+    }
+
+}
