@@ -1,8 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.dankal.basiclib" >
+    package="cn.dankal.basiclib">
 
     <application>
-        <activity android:name=".base.activity.BigPhotoActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".base.activity.BigPhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".common.pay.wxapi.PayActivity"></activity>
     </application>
+
 </manifest>
