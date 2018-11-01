@@ -99,6 +99,7 @@ dependencies {
 //    api project(':component-zxing')
     api project(':component-annotations')
 //    api project(':component-easeui')
+    api deps.tencent.wechat_opensdk
 
     implementation 'org.aspectj:aspectjrt:1.8.9'
     implementation files('libs/happy-dns-0.2.13.jar')
