@@ -30,26 +30,49 @@ android {
         ]
 
     }
-
+   /* adbOptions {
+        timeOutInMs=5*1000
+        installOptions '-r','-s'
+    }
+*/
     signingConfigs {
-        Properties properties = new Properties()
-        if (rootProject.file("local.properties").exists()) {
-            properties.load(rootProject.file("local.properties").newDataInputStream())
+
+        def appStoreFilePath = System.getProperty('StoreFilePath')
+        def appStorePassword = System.getProperty('StorePassword')
+        def appKeyAlias = System.getProperty('KeyAlias')
+        def appKeyPassword = System.getProperty('KeyPassword')
+
+        /*   Properties properties = new Properties()
+           if (rootProject.file("local.properties").exists()) {
+               properties.load(rootProject.file("local.properties").newDataInputStream())
+               storeFilePath= properties.get("STOREFILE")
+               storePassword= properties.get("STOREPASSWORD")
+               keyAlias= properties.get("KEYALIAS")
+               keyPassword= properties.get("KEYPASSWORD")
+           }*/
+
+        if (!appStoreFilePath || !appStorePassword || !appKeyAlias || !appKeyPassword) {
+            //将.android下的debug.keystore放到app目录下
+            appStoreFilePath = "debug.keystore"
+            appStorePassword = "android"
+            appKeyAlias = "androiddebugkey"
+            appKeyPassword = "android"
         }
 
         jenkins {
-            storeFile file(System.getProperty('StoreFilePath') ?: properties.get("STOREFILE"))
-            storePassword System.getProperty('StorePassword') ?: properties.get("STOREPASSWORD")
-            keyAlias System.getProperty('KeyAlias') ?: properties.get("KEYALIAS")
-            keyPassword System.getProperty('KeyPassword') ?: properties.get("KEYPASSWORD")
+            storeFile file(appStoreFilePath)
+            storePassword appStorePassword
+            keyAlias appKeyAlias
+            keyPassword appKeyPassword
         }
 
     }
 
     buildTypes {
         debug {
+            buildConfigField 'String','NAME','value'
             zipAlignEnabled true
-//            minifyEnabled true
+            minifyEnabled false
 //            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.jenkins
@@ -60,7 +83,51 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //DomainObjectCollection集合
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
+                    && 'release'.equals(variant.buildType.name)) {
+
+                def flavorName = variant.flavorName.startsWith("_") ?
+                        variant.flavorName.substring(1) : variant.flavorName
+
+                def apkFile = new File(output.outputFile.getParent(),
+                        //渠道，版本，构建时间
+                        "Haha_${flavorName}_v${variant.versionName}_${buildTime()}.apk")
+
+//                output.outputFile=apkFile
+            }
+        }
+    }
 }
+
+def buildTime() {
+    def date = new Date();
+    def formattedDate = date.format("yyyyMMdd");
+    return formattedDate
+}
+
+
+def getAppVersionName() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--abbrev=0', '--tags'
+        standardOutput = stdout
+    }
+    return stout.toString()
+}
+
+def getAppVersionCode() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'tag', '--list'
+        standardOutput = stdout
+    }
+    return stout.toString().split("\n").size()
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
