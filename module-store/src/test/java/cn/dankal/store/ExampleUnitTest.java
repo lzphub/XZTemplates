@@ -1,4 +1,4 @@
-package cn.dankal.store;
+package cn.xz.store;
 
 import org.junit.Test;
 

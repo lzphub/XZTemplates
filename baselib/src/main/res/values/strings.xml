@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">moudle-ka</string>
 
-    <string name="login_activity_path">cn.dankal.cheerstoka.login.LoginActivity</string>
+    <string name="login_activity_path">cn.xz.cheerstoka.login.LoginActivity</string>
 </resources>

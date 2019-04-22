@@ -52,6 +52,8 @@
  *;
 }
 
+-keep class com.stx.xhb.xbanner.**{*;}
+
 -keepclassmembers class * {
     void *(*Event);
 }

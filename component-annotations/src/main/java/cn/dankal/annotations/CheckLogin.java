@@ -1,4 +1,4 @@
-package cn.dankal.annotations;
+package cn.xz.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -18,11 +18,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 public @interface CheckLogin {
 
-    // boolean required() default true;
-    // String message() default "";
 
-    // 页面跳转的请求码
-    // ps: 如果需要使用带用请求值的页面跳转时  requesrCode >= 0
     int requesrCode() default -1;
 
 }

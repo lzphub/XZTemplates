@@ -1,4 +1,4 @@
-package cn.dankal.address;
+package cn.xz.address;
 
 import org.junit.Test;
 

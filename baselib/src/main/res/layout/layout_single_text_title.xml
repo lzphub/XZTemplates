@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="74dp"
     android:id="@id/dk_title"
     android:background="@android:color/white"
     android:orientation="vertical">
@@ -11,7 +11,7 @@
         android:id="@+id/iv_onback"
         android:layout_width="49dp"
         android:layout_height="49dp"
-        android:layout_gravity="center_vertical"
+        android:layout_marginTop="24dp"
         android:background="@drawable/view_press_style"
         android:padding="16dp"
         android:src="@mipmap/ic_back_black"
@@ -21,7 +21,8 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="49dp"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -29,5 +30,5 @@
 
     <View
         style="@style/divider"
-        android:layout_marginTop="49dp" />
+        android:layout_marginTop="73dp" />
 </FrameLayout>

@@ -1,4 +1,4 @@
-package cn.dankal.user;
+package cn.xz.user;
 
 import org.junit.Test;
 

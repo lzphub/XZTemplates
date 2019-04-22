@@ -1,4 +1,4 @@
-package cn.dankal.compiler;
+package cn.xz.compiler;
 
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
@@ -32,7 +32,7 @@ import javax.lang.model.util.ElementFilter;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
 
-import cn.dankal.annotations.ApiFactory;
+import cn.xz.annotations.ApiFactory;
 
 import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PUBLIC;
@@ -56,11 +56,10 @@ public class ApiFactoryProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
 
-        // 使用了@ApiFactory 这个注解的类的集合
+
         Set<TypeElement> elements = ElementFilter.typesIn(roundEnvironment.getElementsAnnotatedWith(ApiFactory.class));
 
         if (elements.size() > 0) {
-            //Java类创建
             JavaFile.Builder javaBuilder;
             for (TypeElement element : elements) {
                 ApiFactory a = element.getAnnotation(ApiFactory.class);
@@ -83,7 +82,6 @@ public class ApiFactoryProcessor extends AbstractProcessor {
                     throw new NullPointerException(element.getQualifiedName().toString() +
                             " @ApiFactory.method can't be null.");
                 }
-                //@ApiFactory 注解的对象是否是interface
                 if (element.getKind().isInterface()) {
                     //public final class XXXFactory
                     TypeSpec.Builder classBuilder = TypeSpec.classBuilder(
@@ -92,7 +90,6 @@ public class ApiFactoryProcessor extends AbstractProcessor {
                             .addModifiers(FINAL, PUBLIC);
 
 
-                    //创建构造函数
                     MethodSpec constructorBuilder = MethodSpec.constructorBuilder()
                             .addModifiers(Modifier.PUBLIC)
                             .addParameter(ClassName.get("retrofit2", "Retrofit"), "retrofit")
@@ -187,7 +184,7 @@ public class ApiFactoryProcessor extends AbstractProcessor {
             ClassName androidSchedulersClass = ClassName.get(androidSchedulersPg, androidSchedulersName);
 
             //ExceptionHandle
-            String exceptionHandlePg = "cn.dankal.basiclib.rxjava";
+            String exceptionHandlePg = "cn.xz.basiclib.rxjava";
             String exceptionHandleName = "ExceptionHandle";
             ClassName exceptionHandleClass = ClassName.get(exceptionHandlePg, exceptionHandleName);
 
@@ -197,7 +194,7 @@ public class ApiFactoryProcessor extends AbstractProcessor {
             ClassName observableSourceClass = ClassName.get(observableSourcePg, observableSourceName);
 
             //ExceptionHandleFuntion
-            String exceptionHandleFuntionPg = "cn.dankal.basiclib.rx";
+            String exceptionHandleFuntionPg = "cn.xz.basiclib.rx";
             String exceptionHandleFuntionName = "RefreshTokenHelper";
             ClassName exceptionHandleFuntionClass = ClassName.get(exceptionHandleFuntionPg, exceptionHandleFuntionName);
 

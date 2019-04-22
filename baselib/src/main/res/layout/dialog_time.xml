@@ -49,19 +49,19 @@
         android:layout_width="match_parent"
         android:layout_height="149dp">
 
-        <cn.dankal.basiclib.widget.wheelview.WheelView
+        <cn.xz.basiclib.widget.wheelview.WheelView
             android:id="@+id/wv_year"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <cn.dankal.basiclib.widget.wheelview.WheelView
+        <cn.xz.basiclib.widget.wheelview.WheelView
             android:id="@+id/wv_month"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <cn.dankal.basiclib.widget.wheelview.WheelView
+        <cn.xz.basiclib.widget.wheelview.WheelView
             android:id="@+id/wv_day"
             android:layout_width="0dp"
             android:layout_height="match_parent"

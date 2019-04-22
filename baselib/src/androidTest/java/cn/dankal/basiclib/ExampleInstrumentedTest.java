@@ -1,4 +1,4 @@
-package cn.dankal.basiclib;
+package cn.xz.basiclib;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("cn.dankal.basiclib.test", appContext.getPackageName());
+        assertEquals("cn.xz.basiclib.test", appContext.getPackageName());
     }
 }

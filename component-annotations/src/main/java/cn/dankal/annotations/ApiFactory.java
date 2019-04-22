@@ -1,4 +1,4 @@
-package cn.dankal.annotations;
+package cn.xz.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

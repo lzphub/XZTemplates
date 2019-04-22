@@ -1,4 +1,4 @@
-package cn.dankal.annotations;
+package cn.xz.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,7 +12,6 @@ import java.lang.annotation.Target;
  * Time: 下午12:09
  * <p>
  * className: onSingleClick
- * classDescription: View的单击事件拦截
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

@@ -1,4 +1,4 @@
-package cn.dankal.dankalktsample
+package cn.xz.xzktsample
 
 import org.junit.Test
 

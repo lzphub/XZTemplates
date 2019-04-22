@@ -3,7 +3,7 @@ android {
 
     defaultConfig {
         if (!assembleApp.toBoolean()) {
-            applicationId 'cn.dankal.store'
+            applicationId 'cn.xz.store'
         }
     }
 

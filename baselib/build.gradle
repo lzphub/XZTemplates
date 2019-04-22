@@ -107,5 +107,20 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation deps.kotlin.anko
     kapt deps.alibaba.arouter_compiler
+    api 'com.android.support:multidex:1.0.2'
+
+    //圆形Imageview
+    api 'de.hdodenhof:circleimageview:3.0.0'
+    //知乎图片选择器
+    api "com.zhihu.android:matisse:0.5.2-beta3"
+    //鲁班，图片压缩
+    api 'top.zibin:Luban:1.1.8'
+    //zxing，二维码相关
+    api 'com.github.yuzhiqiang1993:zxing:2.2.5'
+
+    api 'com.squareup.retrofit2:converter-gson:2.0.2'
+
+    //轮播图
+    api 'com.github.xiaohaibin:XBanner:1.6.6'
 
 }

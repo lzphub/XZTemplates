@@ -1,4 +1,4 @@
-package cn.dankal.address;
+package cn.xz.address;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("cn.dankal.moudule_address.test", appContext.getPackageName());
+        assertEquals("cn.xz.moudule_address.test", appContext.getPackageName());
     }
 }

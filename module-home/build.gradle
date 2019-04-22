@@ -1,0 +1,14 @@
+apply from: '../module.gradle'
+android {
+
+    defaultConfig {
+        if (!assembleApp.toBoolean()) {
+            applicationId 'cn.xz.setting'
+        }
+    }
+
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}

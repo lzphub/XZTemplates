@@ -6,11 +6,12 @@ android {
     compileSdkVersion build_versions.compile_sdk
 
     defaultConfig {
-//        multiDexEnabled true
+        multiDexEnabled true
 
-        applicationId "cn.dankal.dankalktsample"
+        applicationId "cn.xz.xzktsample"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
+        buildToolsVersion build_versions.build_tools
         versionCode 1
         versionName "1.0.0"
 
@@ -70,7 +71,6 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String','NAME','value'
             zipAlignEnabled true
             minifyEnabled false
 //            shrinkResources true
@@ -134,11 +134,12 @@ dependencies {
 
 //    api deps.support.multidex
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support.constraint:constraint-layout:+'
     annotationProcessor deps.glide.compiler
     annotationProcessor deps.butterknife.butterknife_compiler
     annotationProcessor deps.alibaba.arouter_compiler
     api project(':module-user')
+    api project(':module-home')
     api project(':baselib')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

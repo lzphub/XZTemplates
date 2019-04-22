@@ -1,4 +1,4 @@
-package cn.dankal.basiclib;
+package cn.xz.basiclib;
 
 import org.junit.Test;
 
